@@ -17,20 +17,38 @@ void main() {
   );
 }
 
-class DicePage extends StatelessWidget {
+class DicePage extends StatefulWidget {
+  const DicePage({super.key});
+
+  @override
+  State<DicePage> createState() => _DicePageState();
+}
+
+class _DicePageState extends State<DicePage> {
+  int leftDiceNumber = 1;
+  int rightDiceNumber = 1;
+
+  int diceRoll(int diceNumber) {
+    diceNumber = Random().nextInt(6) + 1;
+    return diceNumber;
+  }
+
+  void changeDiceFace() {
+    setState(() {
+      leftDiceNumber = diceRoll(leftDiceNumber);
+      rightDiceNumber = diceRoll(rightDiceNumber);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    var leftDiceNumber = 1;
-
     return Center(
       child: Row(
         children: <Widget>[
           Expanded(
             child: TextButton(
               onPressed: () {
-                print("Left button got pressed.");
-                //leftDiceNumber = Random().nextInt(6) + 1;
-                //print(leftDiceNumber);
+                changeDiceFace();
               },
               child: Image.asset('images/dice$leftDiceNumber.png'),
             ),
@@ -38,9 +56,9 @@ class DicePage extends StatelessWidget {
           Expanded(
             child: TextButton(
               onPressed: () {
-                print("Right button got pressed.");
+                changeDiceFace();
               },
-              child: Image.asset('images/dice1.png'),
+              child: Image.asset('images/dice$rightDiceNumber.png'),
             ),
           ),
         ],
