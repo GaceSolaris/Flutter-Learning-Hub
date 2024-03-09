@@ -10,109 +10,38 @@ void playSound(int soundNumber) {
   player.play(AssetSource('note$soundNumber.wav'));
 }
 
+Widget buildKey(int soundNumber, Color soundColor) {
+  return Expanded(
+    child: TextButton(
+      style: TextButton.styleFrom(
+        backgroundColor: soundColor,
+        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.zero),
+      ),
+      onPressed: () {
+        playSound(soundNumber);
+      },
+      child: const Text(''),
+    ),
+  );
+}
+
 class XylophoneApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
+        backgroundColor: Colors.black,
         body: SafeArea(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              TextButton(
-                style: TextButton.styleFrom(
-                  backgroundColor: Colors.red,
-                  shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.zero),
-                ),
-                onPressed: () {
-                  playSound(1);
-                },
-                child: const Text(''),
-              ),
-              const SizedBox(
-                height: 10.0,
-              ),
-              TextButton(
-                style: TextButton.styleFrom(
-                  backgroundColor: Colors.orange,
-                  shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.zero),
-                ),
-                onPressed: () {
-                  playSound(2);
-                },
-                child: const Text(''),
-              ),
-              const SizedBox(
-                height: 10.0,
-              ),
-              TextButton(
-                style: TextButton.styleFrom(
-                  backgroundColor: Colors.yellow,
-                  shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.zero),
-                ),
-                onPressed: () {
-                  playSound(3);
-                },
-                child: const Text(''),
-              ),
-              const SizedBox(
-                height: 10.0,
-              ),
-              TextButton(
-                style: TextButton.styleFrom(
-                  backgroundColor: Colors.green,
-                  shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.zero),
-                ),
-                onPressed: () {
-                  playSound(4);
-                },
-                child: const Text(''),
-              ),
-              const SizedBox(
-                height: 10.0,
-              ),
-              TextButton(
-                style: TextButton.styleFrom(
-                  backgroundColor: Colors.green[900],
-                  shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.zero),
-                ),
-                onPressed: () {
-                  playSound(5);
-                },
-                child: const Text(''),
-              ),
-              const SizedBox(
-                height: 10.0,
-              ),
-              TextButton(
-                style: TextButton.styleFrom(
-                  backgroundColor: Colors.blue,
-                  shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.zero),
-                ),
-                onPressed: () {
-                  playSound(6);
-                },
-                child: const Text(''),
-              ),
-              const SizedBox(
-                height: 10.0,
-              ),
-              TextButton(
-                style: TextButton.styleFrom(
-                  backgroundColor: Colors.purple,
-                  shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.zero),
-                ),
-                onPressed: () {
-                  playSound(7);
-                },
-                child: const Text(''),
-              ),
+              buildKey(1, Colors.red),
+              buildKey(2, Colors.orange),
+              buildKey(3, Colors.yellow),
+              buildKey(4, Colors.green),
+              buildKey(5, Colors.teal),
+              buildKey(6, Colors.blue),
+              buildKey(7, Colors.purple),
             ],
           ),
         ),
